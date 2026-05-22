@@ -52,7 +52,7 @@ const TIERS: PricingTier[] = [
     cta: 'Upgrade to Pro',
     highlighted: true,
     badge: 'Most Popular',
-    paddleProductId: process.env.VITE_PADDLE_PRO_PRODUCT_ID,
+    paddleProductId: pri_01ks7gz6rbhq2f2jw5g26b4c46,
     features: [
       { text: 'Everything in Free', included: true },
       { text: 'Working Memory training', included: true },
@@ -75,7 +75,7 @@ const TIERS: PricingTier[] = [
     cta: 'Upgrade to Elite',
     highlighted: false,
     badge: 'Full Access',
-    paddleProductId: process.env.VITE_PADDLE_ELITE_PRODUCT_ID,
+    paddleProductId: pri_01ks7h4y8hyrvs59xk7n5pnj30,
     features: [
       { text: 'Everything in Pro', included: true },
       { text: 'Focus Endurance training', included: true },
