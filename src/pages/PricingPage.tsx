@@ -90,9 +90,11 @@ const TIERS: PricingTier[] = [
 function PaddleCheckoutButton({
   tier,
   currentTier,
+  userEmail,
 }: {
   tier: PricingTier;
   currentTier: string;
+  userEmail?: string;
 }) {
   const isCurrentPlan = tier.id === currentTier;
 
@@ -118,16 +120,17 @@ function PaddleCheckoutButton({
   }
 
   const handleCheckout = () => {
-    if (window.Paddle) {
-      window.Paddle.Checkout.open({
-        items: [
-          {
-            priceId: tier.paddleProductId,
-            quantity: 1,
-          },
-        ],
-      });
+    if (!window.Paddle) {
+      console.error("Paddle is not loaded. Ensure paddle.js is included in index.html.");
+      return;
     }
+    const checkoutOptions: Record<string, unknown> = {
+      items: [{ priceId: tier.paddleProductId, quantity: 1 }],
+    };
+    if (userEmail) {
+      checkoutOptions.customer = { email: userEmail };
+    }
+    window.Paddle.Checkout.open(checkoutOptions);
   };
 
   return (
@@ -197,7 +200,7 @@ export function PricingPage() {
               </div>
 
               {isAuthenticated ? (
-                <PaddleCheckoutButton tier={tier} currentTier={currentTier} />
+                <PaddleCheckoutButton tier={tier} currentTier={currentTier} userEmail={user?.email} />
               ) : (
                 <Link to="/register">
                   <Button
