@@ -8,3 +8,24 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </StrictMode>
 );
+const openProCheckout = () => {
+  window.Paddle.Checkout.open({
+    items: [
+      {
+        priceId: "pri_PRO_ID",
+        quantity: 1
+      }
+    ]
+  });
+};
+
+const openEliteCheckout = () => {
+  window.Paddle.Checkout.open({
+    items: [
+      {
+        priceId: "pri_ELITE_ID",
+        quantity: 1
+      }
+    ]
+  });
+};
