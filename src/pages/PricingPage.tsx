@@ -107,7 +107,20 @@ function PaddleCheckoutButton({
     );
   }
 
-  if (tier.id === 'free') {
+  if (const handleCheckout = () => {
+  if (pro_01ks7gpbvpzbh6g3jjvadq90de) return;
+
+  if (window.Paddle) {
+    window.Paddle.Checkout.open({
+      items: [
+        {
+          priceId: tier.paddleProductId,
+          quantity: 1,
+        },
+      ],
+    });
+  }
+}; ) {
     return (
       <Link to="/register" className="block">
         <Button variant="secondary" className="w-full" size="lg">
