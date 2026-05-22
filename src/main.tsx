@@ -29,3 +29,5 @@ const openEliteCheckout = () => {
     ]
   });
 };
+<button onClick={openProCheckout}>Get Pro</button>
+<button onClick={openEliteCheckout}>Get Elite</button>
