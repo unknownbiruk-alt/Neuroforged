@@ -18,32 +18,7 @@ import { TermsPage } from './pages/legal/TermsPage';
 import { PrivacyPage } from './pages/legal/PrivacyPage';
 import { RefundPage } from './pages/legal/RefundPage';
 
-export default function App(const openProCheckout = () => {
-  if (window.Paddle) {
-    window.Paddle.Checkout.open({
-      items: [
-        {
-          priceId: "pri_YOUR_PRO_ID",
-          quantity: 1
-        }
-      ]
-    });
-  }
-};
-
-const openEliteCheckout = () => {
-  if (window.Paddle) {
-    window.Paddle.Checkout.open({
-      items: [
-        {
-          priceId: pri_01ks7gz6rbhq2f2jw5g26b4c46
-                   pri_01ks7h4y8hyrvs59xk7n5pnj30,
-          quantity: 1
-        }
-      ]
-    });
-  }
-};)
+export default function App()
 {
   return (
     <BrowserRouter>

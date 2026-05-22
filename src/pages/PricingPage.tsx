@@ -52,7 +52,7 @@ const TIERS: PricingTier[] = [
     cta: 'Upgrade to Pro',
     highlighted: true,
     badge: 'Most Popular',
-    paddleProductId: pri_01ks7gz6rbhq2f2jw5g26b4c46,
+    paddleProductId: 'pri_01ks7gz6rbhq2f2jw5g26b4c46',
     features: [
       { text: 'Everything in Free', included: true },
       { text: 'Working Memory training', included: true },
@@ -75,7 +75,7 @@ const TIERS: PricingTier[] = [
     cta: 'Upgrade to Elite',
     highlighted: false,
     badge: 'Full Access',
-    paddleProductId: pri_01ks7h4y8hyrvs59xk7n5pnj30,
+    paddleProductId: 'pri_01ks7h4y8hyrvs59xk7n5pnj30',
     features: [
       { text: 'Everything in Pro', included: true },
       { text: 'Focus Endurance training', included: true },
@@ -107,20 +107,7 @@ function PaddleCheckoutButton({
     );
   }
 
-  if (const handleCheckout = () => {
-  if (pro_01ks7gpbvpzbh6g3jjvadq90de) return;
-
-  if (window.Paddle) {
-    window.Paddle.Checkout.open({
-      items: [
-        {
-          priceId: tier.paddleProductId,
-          quantity: 1,
-        },
-      ],
-    });
-  }
-}; ) {
+  if (!tier.paddleProductId) {
     return (
       <Link to="/register" className="block">
         <Button variant="secondary" className="w-full" size="lg">
@@ -130,23 +117,17 @@ function PaddleCheckoutButton({
     );
   }
 
-  // Paddle integration: In production, this would open Paddle.js checkout
-  // with the real paddleProductId and the authenticated user's email
   const handleCheckout = () => {
-    alert(
-      `Paddle Checkout Integration\n\n` +
-      `In production, this button triggers:\n` +
-      `Paddle.Checkout.open({\n` +
-      `  product: "${tier.paddleProductId || 'PADDLE_PRODUCT_ID'}",\n` +
-      `  email: "user@example.com",\n` +
-      `  passthrough: JSON.stringify({ userId: "user_id" }),\n` +
-      `  successCallback: () => updateSubscription("${tier.id}")\n` +
-      `})\n\n` +
-      `Webhook handler at /api/webhooks/paddle processes:\n` +
-      `- subscription_created\n` +
-      `- subscription_updated\n` +
-      `- subscription_cancelled`
-    );
+    if (window.Paddle) {
+      window.Paddle.Checkout.open({
+        items: [
+          {
+            priceId: tier.paddleProductId,
+            quantity: 1,
+          },
+        ],
+      });
+    }
   };
 
   return (
